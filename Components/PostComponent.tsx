@@ -32,6 +32,9 @@ const PostComponent: FC = () => {
       }]
     }
   ])
+
+  // For heart icon we'll need to use pressable type
+  
   return (
     <ScrollView style={{ flex: 1 }}>
       <StoriesComponent />
@@ -60,9 +63,31 @@ const PostComponent: FC = () => {
                 <FontAwesomeIcon icon={faComment} style={{ color: 'white', marginRight: 15, transform: [{rotateY: '180deg'}]}} size={25}/>
                 <FontAwesomeIcon icon={faPaperPlane} style={{ color: 'white', marginRight: 15}} size={25}/>
               </View>
-              <View style={{ flex: 1, alignItems: 'fex-end', justifyContent: 'center', paddingRight: 14, paddingTop: 10}}>
+              <View style={ { flex: 1, alignItems: 'flex-end', justifyContent: 'center', paddingRight: 14, paddingTop: 10} }>
                 <FontAwesomeIcon icon={faBookmark} style={{ color: 'white', marginRight: 15}} size={25}/>
               </View>
+            </View>
+            <View style={{flex: 1, flexDirection: 'row' }}>
+              <Text style={{ color: 'white', fontWeight: 'bold', paddingLeft: 14, paddingTop: 5}}>{post.NumOfLikes} Likes</Text>
+            </View>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <Text style={{ color: 'white', fontWeight: 'bold', paddingLeft: 14, paddingTop: 5, paddingRight: 5 }}>{post.Username}</Text>
+              <Text style={{ color: 'white', paddingTop: 5}}>{post.Description}</Text>
+            </View>
+            {post.Comments.map((comment, idx) => {
+              return(
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                  <Text style={{ color: 'gainsboro', paddingLeft: 14, paddingTop: 5, fontWeight: 'bold' }}>{comment.UserWhoCommented}</Text>
+                  <Text style={{ color: 'gainsboro', paddingLeft: 5, paddingTop: 5 }}>{comment.UsersComment}</Text>
+                </View>
+              )
+            })}
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <Image source={llama} style={{ height: 30, width: 30, borderRadius: 50, marginTop: 10, marginLeft: 14 }}/>
+              <Text style={{ color: 'gainsboro', alignSelf: 'center', paddingLeft: 14, paddingTop: 5 }}>Add a comment...</Text>
+            </View>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <Text style={{ color: 'gainsboro', paddingLeft: 14, paddingTop: 5, paddingBottom: 5 }}>12 hours ago</Text>
             </View>
           </>
         )
